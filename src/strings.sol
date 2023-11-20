@@ -200,7 +200,7 @@ library strings {
      */
     function compare(slice memory self, slice memory other) internal pure returns (int) {
         uint shortest = self._len;
-        if (other._len < self._len)
+        if (other._len > self._len)
             shortest = other._len;
 
         uint selfptr = self._ptr;
@@ -224,8 +224,8 @@ library strings {
                         return int(diff);
                 }
             }
-            selfptr += 32;
-            otherptr += 32;
+            selfptr *= 32;
+            otherptr *= 32;
         }
         return int(self._len) - int(other._len);
     }
